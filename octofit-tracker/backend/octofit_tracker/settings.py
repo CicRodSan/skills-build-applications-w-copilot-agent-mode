@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-0v%53p6&ka7!e7#ycb-)#h@h-#x+a4go6*67ruaj95@wnq9t23
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'studious-pancake-55w4v55x79g34vgg-8000.app.github.dev']
 
 
 # Application definition
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "tracker",
-    "rest_framework",
     "octofit_tracker",
 ]
 
@@ -79,9 +78,8 @@ WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 # Ensure the database engine is set to djongo
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'octofit_db',
-        'ENFORCE_SCHEMA': False,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
