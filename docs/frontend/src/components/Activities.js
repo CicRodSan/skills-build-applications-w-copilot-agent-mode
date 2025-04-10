@@ -1,1 +1,1 @@
-fetch('https://-8000.app.github.dev/api/activities/')
+fetch('https://<your-codespace-name>-8000.app.github.dev/api/activities/')
