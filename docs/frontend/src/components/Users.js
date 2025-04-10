@@ -1,1 +1,1 @@
-fetch('https://<your-codespace-name>-8000.app.github.dev/api/users/')
+fetch('https://studious-pancake-55w4v55x79g34vgg-8000.app.github.dev/api/users/')
