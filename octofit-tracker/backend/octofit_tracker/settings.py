@@ -149,3 +149,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Add the BASE_URL setting for Codespace and localhost
+BASE_URL = "https://studious-pancake-55w4v55x79g34vgg-8000.app.github.dev/"
