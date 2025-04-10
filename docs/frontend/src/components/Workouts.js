@@ -1,3 +1,1 @@
-import { BASE_URL } from '../config';
-
-fetch(`${BASE_URL}/workouts/`)
+fetch('https://-8000.app.github.dev/api/workouts/')

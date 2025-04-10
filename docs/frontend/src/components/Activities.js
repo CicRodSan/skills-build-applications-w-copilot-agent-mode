@@ -1,3 +1,1 @@
-import { BASE_URL } from '../config';
-
-fetch(`${BASE_URL}/activities/`)
+fetch('https://-8000.app.github.dev/api/activities/')
