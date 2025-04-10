@@ -1,1 +1,3 @@
-fetch('https://studious-pancake-55w4v55x79g34vgg-8000.app.github.dev/api/teams/')
+import { BASE_URL } from '../config';
+
+fetch(`${BASE_URL}/teams/`);
