@@ -11,11 +11,11 @@ db = client[settings.DATABASES['default']['NAME']]
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'users': 'http://localhost:8000/api/users/',
-        'teams': 'http://localhost:8000/api/teams/',
-        'activities': 'http://localhost:8000/api/activities/',
-        'leaderboard': 'http://localhost:8000/api/leaderboard/',
-        'workouts': 'http://localhost:8000/api/workouts/'
+        'users': request.build_absolute_uri('api/users/'),
+        'teams': request.build_absolute_uri('api/teams/'),
+        'activities': request.build_absolute_uri('api/activities/'),
+        'leaderboard': request.build_absolute_uri('api/leaderboard/'),
+        'workouts': request.build_absolute_uri('api/workouts/')
     })
 
 class UserViewSet(viewsets.ViewSet):
