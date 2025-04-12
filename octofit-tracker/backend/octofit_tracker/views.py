@@ -1,8 +1,12 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
-from .models import User, Team, Activity, Leaderboard, Workout
+from pymongo import MongoClient
+from django.conf import settings
+
+# Configurar conexão com o MongoDB
+client = MongoClient(settings.DATABASES['default']['HOST'], settings.DATABASES['default']['PORT'])
+db = client[settings.DATABASES['default']['NAME']]
 
 @api_view(['GET'])
 def api_root(request, format=None):
@@ -14,22 +18,27 @@ def api_root(request, format=None):
         'workouts': 'http://localhost:8000/api/workouts/'
     })
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class UserViewSet(viewsets.ViewSet):
+    def list(self, request):
+        users = list(db.users.find())
+        return Response(users)
 
-class TeamViewSet(viewsets.ModelViewSet):
-    queryset = Team.objects.all()
-    serializer_class = TeamSerializer
+class TeamViewSet(viewsets.ViewSet):
+    def list(self, request):
+        teams = list(db.teams.find())
+        return Response(teams)
 
-class ActivityViewSet(viewsets.ModelViewSet):
-    queryset = Activity.objects.all()
-    serializer_class = ActivitySerializer
+class ActivityViewSet(viewsets.ViewSet):
+    def list(self, request):
+        activities = list(db.activity.find())
+        return Response(activities)
 
-class LeaderboardViewSet(viewsets.ModelViewSet):
-    queryset = Leaderboard.objects.all()
-    serializer_class = LeaderboardSerializer
+class LeaderboardViewSet(viewsets.ViewSet):
+    def list(self, request):
+        leaderboard = list(db.leaderboard.find())
+        return Response(leaderboard)
 
-class WorkoutViewSet(viewsets.ModelViewSet):
-    queryset = Workout.objects.all()
-    serializer_class = WorkoutSerializer
+class WorkoutViewSet(viewsets.ViewSet):
+    def list(self, request):
+        workouts = list(db.workouts.find())
+        return Response(workouts)
