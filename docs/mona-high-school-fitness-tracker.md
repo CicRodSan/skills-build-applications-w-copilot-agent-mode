@@ -3,7 +3,7 @@
 ## Explain to GitHub Copilot the goals and steps
 
 ```text
-I want to build an monafit Tracker app that will include the following:
+I want to build an octofit Tracker app that will include the following:
 
 * User authentication and profiles
 * Activity logging and tracking
@@ -15,22 +15,22 @@ It should be in one app
 
 generate instructions in this order
 
-1. Create the frontend and backend in the monafit-tracker directory structure of this repository in one command
-2. Setup backend python venv and create a monafit-tracker/backend/requirements.txt file
-3. The monafit-tracker/backend directory will store the django project and app with the name monafit-tracker
-4. The Django project monafit-tracker directory will have all the backend components for the app
-5. Create the django app directly in the directory monafit_tracker/backend
-6. Setup the monafit-tracker/frontend directory will store the react app with no subdirectories
+1. Create the frontend and backend in the octofit-tracker directory structure of this repository in one command
+2. Setup backend python venv and create a octofit-tracker/backend/requirements.txt file
+3. The octofit-tracker/backend directory will store the django project and app with the name octofit-tracker
+4. The Django project octofit-tracker directory will have all the backend components for the app
+5. Create the django app directly in the directory octofit_tracker/backend
+6. Setup the octofit-tracker/frontend directory will store the react app with no subdirectories
 7. Install react framework
 8. Install bootstrap and import it
 9. Commands to install mongodb via 'apt-get' 
 10. Commands start mongodb with the 'sudo service mongodb start' and 'sudo service mongodb status'
 
-The directory tree for the monafit Tracker App
-monafit-tracker/
+The directory tree for the octofit Tracker App
+octofit-tracker/
 ├── backend/
 │   ├── venv/
-│   ├── monafit_tracker/
+│   ├── octofit_tracker/
 │   │   ├── __init__.py
 │   │   ├── models.py
 │   │   ├── serializers.py
@@ -74,11 +74,11 @@ webcolors==24.8.0
 webencodings==0.5.1
 websocket-client==1.8.0
 
-All of the backend django app will be in monafit_tracker and do NOT create another app of any kind
+All of the backend django app will be in octofit_tracker and do NOT create another app of any kind
 
-Use a Python virtual environment and install all python dependencies from file monafit-tracker/backend/requirements.txt in this workspace
+Use a Python virtual environment and install all python dependencies from file octofit-tracker/backend/requirements.txt in this workspace
 
-The monafit-tracker/backend/requirements.txt already contains all Django requirements. Django, djongo, sqlparse
+The octofit-tracker/backend/requirements.txt already contains all Django requirements. Django, djongo, sqlparse
 
 Layout the directory structure with no redundant backend and frontend subdirectories
 
@@ -87,20 +87,20 @@ Use bootstrap for the frontend
 Let's think about this step by step
 ```
 
-### Commands to use to create the monafit Tracker structure
+### Commands to use to create the octofit Tracker structure
 
 ```bash
-mkdir -p monafit-tracker/{backend,frontend}
+mkdir -p octofit-tracker/{backend,frontend}
 
-python3 -m venv monafit-tracker/backend/venv
-source monafit-tracker/backend/venv/bin/activate
-pip install -r monafit-tracker/backend/requirements.txt
+python3 -m venv octofit-tracker/backend/venv
+source octofit-tracker/backend/venv/bin/activate
+pip install -r octofit-tracker/backend/requirements.txt
 
-django-admin startproject monafit_tracker monafit-tracker/backend
+django-admin startproject octofit_tracker octofit-tracker/backend
 
-npx create-react-app monafit-tracker/frontend
+npx create-react-app octofit-tracker/frontend
 
-npm install bootstrap monafit-tracker/frontend
+npm install bootstrap octofit-tracker/frontend
 
 echo "import 'bootstrap/dist/css/bootstrap.min.css';" >> src/index.js
 
@@ -115,12 +115,12 @@ Type the following prompt in GitHub Copilot Chat:
 ```text
 In our next steps lets think step by step and setup the following in this order
 
-1. Initialize the mongo monafit_db database and create a correct table structure for users, teams, activities, leaderboard, and workouts collections
+1. Initialize the mongo octofit_db database and create a correct table structure for users, teams, activities, leaderboard, and workouts collections
 2. Make sure there is a unique id for primary key for the user collection 
    ex. db.users.createIndex({ "email": 1 }, { unique: true })
-3. settings.py in our django project for mongodb monafit_db database including localhost and the port
-4. settings.py in our django project setup for all installed apps. ex djongo, monafit_tracker, rest_framework
-5. In monafit_tracker project setup and use command touch models.py, serializers.py, urls.py, and views.py for users, teams, activity, leaderboard, and workouts
+3. settings.py in our django project for mongodb octofit_db database including localhost and the port
+4. settings.py in our django project setup for all installed apps. ex djongo, octofit_tracker, rest_framework
+5. In octofit_tracker project setup and use command touch models.py, serializers.py, urls.py, and views.py for users, teams, activity, leaderboard, and workouts
 6. Generate code for models.py, serializers.py, and views.py and
 7. make sure urls.py has a root, admin, and api endpoints
     urlpatterns = [
@@ -130,25 +130,25 @@ In our next steps lets think step by step and setup the following in this order
     ]
 ```
 
-### MongoDB commands to initialize and setup `monafit_db`
+### MongoDB commands to initialize and setup `octofit_db`
 
 ```bash
-mongo --eval "db = db.getSiblingDB('monafit_db'); db.createCollection('users'); db.createCollection('teams'); db.createCollection('activity'); db.createCollection('leaderboard'); db.createCollection('workouts'); db.users.createIndex({ email: 1 }, { unique: true }); db.teams.createIndex({ name: 1 }, { unique: true }); db.activity.createIndex({ activity_id: 1 }, { unique: true }); db.leaderboard.createIndex({ leaderboard_id: 1 }, { unique: true }); db.workouts.createIndex({ workout_id: 1 }, { unique: true });"
+mongo --eval "db = db.getSiblingDB('octofit_db'); db.createCollection('users'); db.createCollection('teams'); db.createCollection('activity'); db.createCollection('leaderboard'); db.createCollection('workouts'); db.users.createIndex({ email: 1 }, { unique: true }); db.teams.createIndex({ name: 1 }, { unique: true }); db.activity.createIndex({ activity_id: 1 }, { unique: true }); db.leaderboard.createIndex({ leaderboard_id: 1 }, { unique: true }); db.workouts.createIndex({ workout_id: 1 }, { unique: true });"
 ```
 
 ### Check the database collections
 
 ```bash
-mongo --eval "db = db.getSiblingDB('monafit_db'); printjson(db.getCollectionNames());"
+mongo --eval "db = db.getSiblingDB('octofit_db'); printjson(db.getCollectionNames());"
 ```
 
 ### Sample settings.py
 
 ```json
-# FILE: monafit_tracker/settings.py
+# FILE: octofit_tracker/settings.py
 
 """
-Django settings for monafit_tracker project.
+Django settings for octofit_tracker project.
 
 Generated by 'django-admin startproject' using Django 4.1.
 
@@ -189,7 +189,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'djongo',
     'corsheaders',
-    'monafit_tracker',
+    'octofit_tracker',
 ]
 
 MIDDLEWARE = [
@@ -203,7 +203,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-ROOT_URLCONF = "monafit_tracker.urls"
+ROOT_URLCONF = "octofit_tracker.urls"
 
 TEMPLATES = [
     {
@@ -221,7 +221,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "monafit_tracker.wsgi.application"
+WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 
 
 # Database
@@ -230,7 +230,7 @@ WSGI_APPLICATION = "monafit_tracker.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'monafit_db',
+        'NAME': 'octofit_db',
         'HOST': 'localhost',
         'PORT': 27017,
     }
@@ -286,7 +286,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 #### models.py
 
 ```python
-# FILE: monafit-tracker/backend/monafit_tracker/models.py
+# FILE: octofit-tracker/backend/octofit_tracker/models.py
 
 from djongo import models
 
@@ -374,7 +374,7 @@ class WorkoutSerializer(serializers.ModelSerializer):
 #### views.py
 
 ```python
-# FILE: monafit-tracker/backend/monafit_tracker/views.py
+# FILE: octofit-tracker/backend/octofit_tracker/views.py
 
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
@@ -421,7 +421,7 @@ class WorkoutViewSet(viewsets.ModelViewSet):
 #### urls.py
 
 ```python
-# FILE: monafit-tracker/backend/monafit_tracker/urls.py
+# FILE: octofit-tracker/backend/octofit_tracker/urls.py
 
 from django.contrib import admin
 from django.urls import path, include
@@ -450,28 +450,28 @@ Let's use manage.py to get the database setup and populated based on fields in m
 - Create populate_db.py as a manage.py command so it initializes and deletes previous data and recreates it
 - populate_db.py creates users, teams, activity, leaderboard, and workouts
 - users will be super hero users
-- Include steps to migrate in the monafit_tracker project
+- Include steps to migrate in the octofit_tracker project
 ```
 
 ### Commands to create the directory structure for populate_db.py
 
 ```bash
-mkdir -p monafit-tracker/backend/monafit_tracker/management/commands
-touch monafit-tracker/backend/monafit_tracker/management/__init__.py
-touch monafit-tracker/backend/monafit_tracker/management/commands/__init__.py
-touch monafit-tracker/backend/monafit_tracker/management/commands/populate_db.py
+mkdir -p octofit-tracker/backend/octofit_tracker/management/commands
+touch octofit-tracker/backend/octofit_tracker/management/__init__.py
+touch octofit-tracker/backend/octofit_tracker/management/commands/__init__.py
+touch octofit-tracker/backend/octofit_tracker/management/commands/populate_db.py
 ```
 
 ### Sample code for populate_db.py to populate the database
 
 Mergington Physical Education sample data use for populate_db.py
-Should reside under monafit-tracker/backend/monafit_tracker/management/commands/populate_db.py
+Should reside under octofit-tracker/backend/octofit_tracker/management/commands/populate_db.py
 
 ```python
-# FILE: monafit-tracker/backend/monafit_tracker/management/commands/populate_db.py
+# FILE: octofit-tracker/backend/octofit_tracker/management/commands/populate_db.py
 
 from django.core.management.base import BaseCommand
-from monafit_tracker.models import User, Team, Activity, Leaderboard, Workout
+from octofit_tracker.models import User, Team, Activity, Leaderboard, Workout
 from django.conf import settings
 from pymongo import MongoClient
 from datetime import timedelta
@@ -545,9 +545,9 @@ class Command(BaseCommand):
 ### Run the following commands to migrate the database and populate it with data
 
 ```bash
-python monafit-tracker/backend/manage.py monafit-tracker/backend/makemigrations
-python monafit-tracker/backend/manage.py monafit-tracker/backend/migrate
-python monafit-tracker/backendmanage.py monafit-tracker/backend/populate_db
+python octofit-tracker/backend/manage.py octofit-tracker/backend/makemigrations
+python octofit-tracker/backend/manage.py octofit-tracker/backend/migrate
+python octofit-tracker/backendmanage.py octofit-tracker/backend/populate_db
 ```
 
 ## Using the Codespace endpoint to access the Django REST API endpoints
@@ -555,7 +555,7 @@ python monafit-tracker/backendmanage.py monafit-tracker/backend/populate_db
 ```text
 Let's do the following step by step
 
-- Update #file:monafit-tracker/backend/monafit_tracker/views.py to replace the return for the rest api url endpiints with the codespace url http://[REPLACE-THIS-WITH-YOUR-CODESPACE-NAME]-8000.app.github.dev for django
+- Update #file:octofit-tracker/backend/octofit_tracker/views.py to replace the return for the rest api url endpiints with the codespace url http://[REPLACE-THIS-WITH-YOUR-CODESPACE-NAME]-8000.app.github.dev for django
 - Replace <codespace-name> with [REPLACE-THIS-WITH-YOUR-CODESPACE-NAME]
 - Run the Django server
 
@@ -588,7 +588,7 @@ HTTP 200 OK Allow: GET, HEAD, OPTIONS Content-Type: application/json Vary: Accep
 ## Update to views.py
 
 ```python
-# FILE: monafit-tracker/backend/monafit_tracker/views.py
+# FILE: octofit-tracker/backend/octofit_tracker/views.py
 
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
@@ -638,15 +638,15 @@ python manage.py runserver
 ## Setup the frontend React app use the below package.json
 
 ```bash
-mkdir -p monafit-tracker/frontend
+mkdir -p octofit-tracker/frontend
 
-npx create-react-app monafit-tracker/frontend
+npx create-react-app octofit-tracker/frontend
 
-npm install bootstrap --prefix monafit-tracker/frontend
+npm install bootstrap --prefix octofit-tracker/frontend
 
 echo "import 'bootstrap/dist/css/bootstrap.min.css';" >> src/index.js
 
-npm install react-router-dom --prefix monafit-tracker/frontend
+npm install react-router-dom --prefix octofit-tracker/frontend
 ```
 
 ### package.json
@@ -695,7 +695,7 @@ npm install react-router-dom --prefix monafit-tracker/frontend
 }
 ```
 
-## monafit App components
+## octofit App components
 
 Create the following components
 
