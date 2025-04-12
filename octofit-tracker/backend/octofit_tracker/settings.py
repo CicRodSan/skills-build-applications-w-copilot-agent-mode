@@ -74,10 +74,10 @@ WSGI_APPLICATION = 'octofit_tracker.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# Atualizar a configuração do banco de dados para usar pymongo diretamente
+# Configuração do banco de dados MongoDB
 DATABASES = {
     'default': {
-        'ENGINE': '',  # Não usamos um engine específico
+        'ENGINE': 'djongo',
         'NAME': 'octofit_db',
         'HOST': 'localhost',
         'PORT': 27017,
@@ -125,5 +125,5 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Permitir todas as origens para desenvolvimento
+# Habilitar CORS para permitir todas as origens
 CORS_ALLOW_ALL_ORIGINS = True
