@@ -14,13 +14,26 @@ function Workouts() {
   }, []);
 
   return (
-    <div>
-      <h1>Workouts</h1>
-      <ul>
-        {workouts.map(workout => (
-          <li key={workout.id}>{workout.name}</li>
-        ))}
-      </ul>
+    <div className="card">
+      <div className="card-body">
+        <h1 className="card-title">Workouts</h1>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {workouts.map(workout => (
+              <tr key={workout.id}>
+                <td>{workout.id}</td>
+                <td>{workout.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
